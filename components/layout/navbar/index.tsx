@@ -1,60 +1,42 @@
 import CartModal from "components/cart/modal";
-import LogoSquare from "components/logo-square";
-import { getMenu } from "lib/shopify";
-import { Menu } from "lib/shopify/types";
+import Image from "next/image";
 import Link from "next/link";
-import { Suspense } from "react";
-import MobileMenu from "./mobile-menu";
-import Search, { SearchSkeleton } from "./search";
-
-const { SITE_NAME } = process.env;
+import { NavMenu } from "./nav-menu";
+import { MagnifyingGlassIcon, UserIcon } from "@heroicons/react/24/outline";
 
 export async function Navbar() {
-  const menu = await getMenu("next-js-frontend-header-menu");
-
   return (
-    <nav className="relative flex items-center justify-between p-4 lg:px-6">
-      <div className="block flex-none md:hidden">
-        <Suspense fallback={null}>
-          <MobileMenu menu={menu} />
-        </Suspense>
+    <nav className="relative flex items-center justify-between border-b border-neutral-700 bg-black px-8 py-10">
+      {/* Logo */}
+      <div className="flex-none">
+        <Link
+          href="/"
+          prefetch={true}
+          className="flex items-center gap-2"
+        >
+          <Image
+            src="/logo.png"
+            alt="BCYL Pokishop"
+            width={68}
+            height={68}
+            className="h-[100px] w-[100px] object-contain"
+            priority
+          />
+        </Link>
       </div>
-      <div className="flex w-full items-center">
-        <div className="flex w-full md:w-1/3">
-          <Link
-            href="/"
-            prefetch={true}
-            className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6"
-          >
-            <LogoSquare />
-            <div className="ml-2 flex-none text-sm font-medium uppercase md:hidden lg:block">
-              {SITE_NAME}
-            </div>
-          </Link>
-          {menu.length ? (
-            <ul className="hidden gap-6 text-sm md:flex md:items-center">
-              {menu.map((item: Menu) => (
-                <li key={item.title}>
-                  <Link
-                    href={item.path}
-                    prefetch={true}
-                    className="text-neutral-500 underline-offset-4 hover:text-black hover:underline dark:text-neutral-400 dark:hover:text-neutral-300"
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-        </div>
-        <div className="hidden justify-center md:flex md:w-1/3">
-          <Suspense fallback={<SearchSkeleton />}>
-            <Search />
-          </Suspense>
-        </div>
-        <div className="flex justify-end md:w-1/3">
-          <CartModal />
-        </div>
+
+      {/* Center Menu */}
+      <NavMenu />
+
+      {/* Right Icons */}
+      <div className="flex items-center justify-end gap-6">
+        <Link href="/search" className="text-white transition-colors hover:text-cyan-400">
+          <MagnifyingGlassIcon className="h-6 w-6" />
+        </Link>
+        <Link href="/account" className="text-white transition-colors hover:text-cyan-400">
+          <UserIcon className="h-6 w-6" />
+        </Link>
+        <CartModal />
       </div>
     </nav>
   );
