@@ -8,7 +8,7 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <>
-      <section className="bg-[radial-gradient(120%_100%_at_0%_20%,#19204c_0%,#090b1f_52%,#060815_100%)] px-4 py-16 text-white md:py-20">
+      <section className="bg-neutral-950 px-4 py-16 text-white md:py-20">
         <div className="mx-auto max-w-5xl">
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-[320px_1fr] lg:gap-8">
             <div className="lg:col-start-2">

@@ -1,8 +1,9 @@
+import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import CartModal from "components/cart/modal";
 import Image from "next/image";
 import Link from "next/link";
+import AuthModal from "./auth-modal";
 import { NavMenu } from "./nav-menu";
-import { MagnifyingGlassIcon, UserIcon } from "@heroicons/react/24/outline";
 
 export async function Navbar() {
   return (
@@ -33,9 +34,7 @@ export async function Navbar() {
         <Link href="/search" className="text-white transition-colors hover:text-cyan-400">
           <MagnifyingGlassIcon className="h-6 w-6" />
         </Link>
-        <Link href="/account" className="text-white transition-colors hover:text-cyan-400">
-          <UserIcon className="h-6 w-6" />
-        </Link>
+        <AuthModal />
         <CartModal />
       </div>
     </nav>

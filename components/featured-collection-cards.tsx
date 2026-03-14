@@ -1,7 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
 import Price from "components/price";
 import { getCollectionProducts, getProducts } from "lib/shopify";
+import Image from "next/image";
+import Link from "next/link";
 
 export async function FeaturedCollectionCards() {
   const carouselProducts = await getCollectionProducts({
@@ -42,7 +42,7 @@ export async function FeaturedCollectionCards() {
         {products.slice(0, 4).map((product) => (
           <li
             key={product.handle}
-            className="overflow-hidden rounded-2xl border border-neutral-700 bg-[#050916]"
+            className="overflow-hidden rounded-2xl border border-neutral-700 bg-[#050916] transition-all duration-300 hover:-translate-y-1.5 hover:border-yellow-400 hover:shadow-[0_0_20px_rgba(250,204,21,0.45)]"
           >
             <Link href={`/product/${product.handle}`} className="block h-full">
               <div className="relative aspect-[4/5] w-full bg-white">

@@ -1,7 +1,25 @@
 import Link from "next/link";
-import { CameraIcon, MusicalNoteIcon } from "@heroicons/react/24/outline";
+import type { SVGProps } from "react";
 
 const { SITE_NAME } = process.env;
+const INSTAGRAM_URL = process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://www.instagram.com/";
+const TIKTOK_URL = process.env.NEXT_PUBLIC_TIKTOK_URL || "https://www.tiktok.com/";
+
+function InstagramIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95h-8.5Zm8.92 1.35a1.23 1.23 0 1 1 0 2.46 1.23 1.23 0 0 1 0-2.46ZM12 7.2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6Zm0 1.8a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" />
+    </svg>
+  );
+}
+
+function TikTokIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
+      <path d="M13.06 2h2.9c.27 2.18 1.48 3.77 3.57 4.03v2.9a8.27 8.27 0 0 1-3.53-1.31v6.4a5.97 5.97 0 1 1-5.96-5.95c.36 0 .72.03 1.06.1v2.96a2.98 2.98 0 1 0 1.96 2.89V2Z" />
+    </svg>
+  );
+}
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -18,8 +36,8 @@ export default function Footer() {
           <form className="mx-auto mt-8 flex w-full max-w-2xl flex-col gap-3 sm:flex-row">
             <input
               type="email"
-              placeholder="you@example.com"
-              className="h-11 flex-1 rounded-md border-0 px-4 text-sm text-black outline-none ring-2 ring-transparent placeholder:text-neutral-500 focus:ring-cyan-300"
+              placeholder="example@email.com"
+              className="h-11 flex-1 rounded-full border-2 border-black bg-white px-4 text-sm text-black outline-none placeholder:text-neutral-400 focus:border-black"
             />
             <button
               type="button"
@@ -46,12 +64,7 @@ export default function Footer() {
                   <Link href="/shipping" className="hover:text-cyan-300">
                     Shipping Info
                   </Link>
-                </li>
-                <li>
-                  <Link href="/returns" className="hover:text-cyan-300">
-                    Returns
-                  </Link>
-                </li>
+                </li> 
                 <li>
                   <Link href="/faq" className="hover:text-cyan-300">
                     FAQ
@@ -86,25 +99,23 @@ export default function Footer() {
               <div className="mt-4 flex items-center gap-3">
                 <a
                   aria-label="Instagram"
-                  href="#"
+                  href={"https://www.instagram.com/bcyl.pokishop/"}
+                  target="_blank"
+                  rel="noreferrer"
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-cyan-400 hover:text-black"
                 >
-                  <CameraIcon className="h-5 w-5" />
+                  <InstagramIcon className="h-5 w-5" />
                 </a>
                 <a
                   aria-label="TikTok"
-                  href="#"
+                  href={"https://www.tiktok.com/@bcyl_pokishop"}
+                  target="_blank"
+                  rel="noreferrer"
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-cyan-400 hover:text-black"
                 >
-                  <MusicalNoteIcon className="h-5 w-5" />
+                  <TikTokIcon className="h-5 w-5" />
                 </a>
               </div>
-            </div>
-
-            <div>
-              <h4 className="text-sm font-bold uppercase tracking-wider text-cyan-300">
-                {(SITE_NAME || "BCYL.POKISHOP").toUpperCase()}
-              </h4>
             </div>
           </div>
 
